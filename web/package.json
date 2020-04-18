@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "date-and-time": "^0.13.1",
     "express": "^4.16.2",
-    "mongoose": "^4.13.20",
+    "mongoose": ">=5.7.5",
     "nodemon": "^2.0.3"
   }
 }
