@@ -1,0 +1,22 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build node-js-img",
+            "type": "shell",
+            "command": "docker build -t nikfilias/node-js-server ."
+        },
+        {
+            "label": "Push node-js-img",
+            "type": "shell",
+            "command": "docker push nikfilias/node-js-server"
+        },
+        {
+            "label": "kubectl create db",
+            "type": "shell",
+            "command": "kubectl create -f db/k8s"
+        }
+    ]
+}
