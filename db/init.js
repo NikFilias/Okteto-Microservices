@@ -21,6 +21,6 @@ db.createUser({
     pwd: "pass1",
     roles: [{
       role: "dbOwner",
-      db: "pois"
+      db: "users"
     }]
   });

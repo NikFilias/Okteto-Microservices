@@ -5,7 +5,7 @@ metadata:
   namespace: nikfilias
 data:
   # SERVICE_NAME.NAMESPACE.svc.cluster.local:SERVICE_PORT
-  MONGO_URL: 10.4.41.42:27017
+  MONGO_URL: mongodb-cluster-ip-service:27017
   MONGO_USERNAME: adminCluster
   MONGO_PASSWORD: secret-pass
   MONGO_DATABASE: users

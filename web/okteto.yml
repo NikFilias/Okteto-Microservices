@@ -5,7 +5,8 @@ remote: 2222
 forward:
   - 3000:3000
   - 27017:27017
-  - 9229:9229
+reverse:
+  - 9230:9230
 environment:
   - MONGO_URL=0.0.0.0:27017
   - MONGO_USERNAME=adminCluster
@@ -17,5 +18,4 @@ services:
   - name: mongodb-deployment
     workdir: /app
     image: nikfilias/mongoauth
-  - name: mongodb-express
 
