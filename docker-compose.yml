@@ -1,0 +1,58 @@
+version: "2"
+services:
+  node-js:
+    container_name: node-js-server
+    image: nikfilias/node-js-server
+    restart: always
+    ports:
+      - "3006:3006"
+      - "9240:9240"
+    depends_on:
+      - mongo
+    environment: 
+      - MONGO_URL=172.19.18.2:27017
+      - MONGO_USERNAME=myUserAdmin
+      - MONGO_PASSWORD=pass1
+      - MONGO_DATABASE=admin
+      - MONGO_SERVER=10.4.41.42
+      - MONGO_SERVICE=mongodb-cluster-ip-service
+    networks:
+      backend:
+        ipv4_address: 172.19.18.3
+  mongo:
+    container_name: mongo
+    image: nikfilias/mongoauth
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      backend:
+        ipv4_address: 172.19.18.2
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    depends_on:
+      - mongo    
+    ports:
+      - "8081:8081"
+    environment: 
+      - ME_CONFIG_MONGODB_SERVER=172.19.18.2
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=myUserAdmin
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=pass1
+    networks:
+      backend:
+        ipv4_address: 172.19.18.4
+
+networks: 
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.19.18.0/24
+        gateway: 172.19.18.1
