@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-js-deployment
+  namespace: nikfilias
+spec:
+  selector:
+    matchLabels:
+      app: node-js-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: node-js-server
+    spec:
+      containers:
+      - image: nikfilias/node-js-server
+        imagePullPolicy: Always        
+        name: node-js-server
+        ports:
+            - containerPort: 3000
+        env:
+          - name: MONGO_URL
+            valueFrom:
+              configMapKeyRef:
+                name: nodejs-config
+                key: MONGO_URL
+          - name: MONGO_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: nodejs-config
+                key: MONGO_USERNAME
+          - name: MONGO_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: nodejs-config
+                key: MONGO_PASSWORD
+          - name: MONGO_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: nodejs-config
+                key: MONGO_DATABASE            

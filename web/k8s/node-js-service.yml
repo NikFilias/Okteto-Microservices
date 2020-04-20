@@ -9,5 +9,7 @@ spec:
       port: 3000
       # Port to forward to inside the pod
       targetPort: 3000
+  externalIPs:
+    - 80.11.12.10
   selector:
     app: node-js-server

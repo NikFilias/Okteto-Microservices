@@ -41,7 +41,7 @@ app.post('v1/add', async (req, res) => {
 });
 
 mongoose.connect(
-  `mongodb://mongodb://${MONGO_URL}/${MONGO_DATABASE}`,
+  `mongodb://${MONGO_URL}/${MONGO_DATABASE}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

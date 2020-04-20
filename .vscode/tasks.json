@@ -17,6 +17,12 @@
             "label": "kubectl create db",
             "type": "shell",
             "command": "kubectl create -f db/k8s"
+        },
+        {
+            "label": "Export kubernetes configuration",
+            "type": "shell",
+            "command": "export KUBECONFIG=$HOME/Downloads/okteto-kube.config:${KUBECONFIG:-$HOME/.kube/config}"
         }
+
     ]
 }
